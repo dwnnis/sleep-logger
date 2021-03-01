@@ -1,0 +1,200 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "sleep logger",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "RequestLogSleepIntent",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            },
+            {
+              "name": "asleepTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "{asleepTime} ",
+                "I fell asleep at {asleepTime}",
+                "I went to bed at {asleepTime}"
+              ]
+            },
+            {
+              "name": "awakeTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "{awakeTime}",
+                "I woke up at {awakeTime}",
+                "I got up at {awakeTime}"
+              ]
+            }
+          ],
+          "samples": [
+            "I fell asleep at {asleepTime} on {date}",
+            "{date} I woke up at {awakeTime} ",
+            "{date} I fell asleep at {asleepTime} and got up at {awakeTime}"
+          ]
+        },
+        {
+          "name": "RequestLogSleepDurationIntent",
+          "slots": [
+            {
+              "name": "asleepTime",
+              "type": "AMAZON.TIME"
+            },
+            {
+              "name": "duration",
+              "type": "AMAZON.DURATION"
+            },
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "I fell asleep at {asleepTime} {date} and slept for {duration}",
+            "I went to bed at {asleepTime} {date} and slept for {duration}"
+          ]
+        },
+        {
+          "name": "RequestAllSleepLogIntent",
+          "slots": [],
+          "samples": [
+            "What sleep logs do I have",
+            "What sleep logs have I recorded"
+          ]
+        },
+        {
+          "name": "RequestSleepTimeIntent",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "When did I fall asleep {date}",
+            "When did I go to bed {date}"
+          ]
+        },
+        {
+          "name": "RequestWakeTimeIntent",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "When did I get up {date}",
+            "When did I wake up {date}"
+          ]
+        },
+        {
+          "name": "RequestSleepLogFromSleepTimeIntent",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "How much sleep did I get  {date}",
+            "How long did I sleep  {date}",
+            "How long did I sleep on {date}  ",
+            "How much sleep did I get on {date} ",
+            "How long did I sleep on {date} night",
+            "How much sleep did I get on {date} night"
+          ]
+        }
+      ],
+      "types": []
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "RequestLogSleepIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "asleepTime",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.412363480795.768851037885"
+              }
+            },
+            {
+              "name": "awakeTime",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.412363480795.1402186038854"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.412363480795.768851037885",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "When did you go to bed?"
+          },
+          {
+            "type": "PlainText",
+            "value": "What time did you go to bed?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.412363480795.1402186038854",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "When did you get up?"
+          },
+          {
+            "type": "PlainText",
+            "value": "When did you wake up?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "9"
+}
